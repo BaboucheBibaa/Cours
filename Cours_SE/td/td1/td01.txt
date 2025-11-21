@@ -1,0 +1,5 @@
+TD1 - Système de gestion de fichiers
+
+1. En partant du principe qu'un bloc fait 960 octets et qu'une adresse fait 5 octets, on peut donc stocker dans un seul bloc 960//5 adresses, soit 192 adresses dans un seul bloc.
+Avec les 7 blocs de données présents sur l'i-nœud, + les 192 adresses stockables dans une adresse d'indirection et une adresse double indirection contiendra 192 adresses de bloc de simple indirection, on aura 192 * 192 blocs: 36 864 blocs.
+total: 7 + 192 + 36 864 blocs. = 37 063 blocs.

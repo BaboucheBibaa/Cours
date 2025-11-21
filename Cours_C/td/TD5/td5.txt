@@ -1,0 +1,65 @@
+Ex 5.1: 
+1. Dans quels cas doit-on utiliser l’allocation dynamique pour allouer des objets en mémoire ?
+ -> L'allocation dynamique peut s'utiliser dans le cas où on travaille sur un tableau qui a besoin d'être modifié en cours de route
+    Typiquement, si on souhaite augmenter la taille d'un tableau (ou la réduire) pendant qu'on travaille sur ce tableau, on devra passer
+    par une allocation dynamique.
+
+2. On souhaite définir un tableau à une dimension dont la taille est saisie par l’utilisateur et en saisir les valeurs. Comment faire ?
+ -> Voir fichier 2.c pour une correction
+
+
+3. Quelle est la différence entre les allocations dynamiques suivantes (faites un dessin pour chaque cas) :
+
+(a) char ** tab = (char **) malloc (10* sizeof(char*));
+-> on initialise un tableau vers 10 pointeurs vers des éléments de type char* (utile pour faire des tableaux à deux dimensions)
+
+(b) char** tab = (char **)malloc (10 * sizeof (*tab));
+-> on initialise un tableau vers 10 pointeurs qui pointent vers des éléments de type *tab (or, *tab est équivalent à char*)
+
+(c) char** tab ;
+tab = malloc (10 * sizeof (*tab));
+-> déclaration de la variable tab avant l'allocation mémoire, mais allocation mémoire d'un tableau de 10 pointeurs vers des éléments de type *tab,
+donc vers des char*.
+
+(d) char** tab = (char **)malloc(10*sizeof(char*));
+for (i=0;i<10;i++)
+tab[i]=(char*)malloc(TAILLE*sizeof(char));
+-> TAILLE non initialisé, mais partons du principe qu'il l'est, sinon c'est pas pertinent.
+-> Ligne 1: allocation dynamique d'un tableau vers 10 pointeurs de type char*.
+-> Boucle for qui initialise chaque pointeur du tableau de caractères vers un tableau de caractères de longueur TAILLE
+
+(e) char** tab ;
+tab = malloc(10*sizeof(*tab));
+for (i=0;i<10;i++)
+tab[i]= malloc(TAILLE*sizeof(*(tab[i])));
+-> Déclaration de la variable avant l'allocation mémoire, qui alloue un tableau de 10 pointeurs de *tab (donc char*).
+-> Boucle qui initialise chaque pointeur de tab vers un pointeur d'un tableau de caractères de longueur TAILLE.
+
+(f ) char *data = (char*) malloc(10*TAILLE*sizeof(char));
+-> Initialisation d'un tableau linéaire de type char*, qui peut contenir 10*TAILLE caractères.
+
+(g) char **tab = (char**) malloc(10 * sizeof(char*));
+char *data = (char*) malloc(10*TAILLE*sizeof(char));
+for (int i=0;i<10;i++)
+tab[i]=data+i*TAILLE;
+-> Ligne 1: Initialise un tableau de type char** qui contient 10 pointeurs qui pointent vers des éléments de type char*.
+-> Ligne 2: Initialise un tableau de type char* de longueur 10*TAILLE caractères.
+-> Ligne 3: Point chaque tab[i] sur le début de la i-ème "ligne" dans data (modélisation d'un tableau 2D dans un tableau 1D)
+
+(h) char **tab ;
+char *data;
+tab = malloc(sizeof(*tab));
+data = malloc(10*TAILLE*sizeof(*data));
+for (int i=0;i<10;i++)
+tab[i]=data+i*TAILLE;
+-> Ligne 1, 2: Initialisation de tableaux de type char** et char*
+-> Ligne 3: Allocation mémoire dans tab, contiendra un seul pointeur de type *tab donc char*
+-> Ligne 4: Allocation mémoire dans data, contient 10*TAILLE caractères
+-> Boucle qui parcourt 10 éléments de tab, or il n'y en a qu'un seul qui est alloué -> dépassement mémoire -> erreur
+
+
+4. Pour chacune de ces lignes, comment doit-on libérer la mémoire ?
+-> Il faut utiliser la commande free(*ptr)
+
+Ex 5.2
+-> Voir 5-2.c
