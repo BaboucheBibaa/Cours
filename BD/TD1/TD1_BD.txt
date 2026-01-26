@@ -1,0 +1,20 @@
+1. Une espèce est composée d'au moins 1 animal et maximum n animaux.
+Un animal appartient à au moins 1 espèce et max 1 espèce.
+Un animal aime 1 personnes au maximum et au max n personnes.
+Une personne aime 1 animaux minimum et maximum n animaux.
+(on part du principe qu'au vu du contexte 30 millions d'amis, on stocke uniquement les personnes qui ont adoptées au moins un animal, donc ces personnes peuvent aimer au moins un animal pour être ajoutées dans la base)
+
+
+Un animal mange au moins 1 aliment ou n aliments
+Un aliment est mangé par au moins un animal ou n animaux en partant du principe qu'on stocke uniquement ce qui est mangé par les animaux.
+
+2.
+a) Non car un patietn peut être impliqué par aucune consultation et un médecin aussi. De plus il n'y a aucun lien entre un patient et un médecin dans le MCD.
+b) Non car un symptôme peut être lié à une maladie mais on peut ne pas avoir de symptômes (0,n). De plus les symptômes peuvent changer. 
+c) On peut consulter pour 0 maladies ou n maladies donc non. De plus une maladie n'est pas forcément liée à une consultation.
+d) Une maladie est associée à un symptôme ou n symptômes
+e) Non car un patient est concerné par 0 ou n consultations et une consultation peut diagnostiquer 0 ou n maladies.
+f) Un patient doit faire une consultation et on doit diagnostiquer une maladie ou détecter des symptômes liés à une maladie.
+g) Oui car on peut détecter des symptômes non associés à une maladie.
+h) Non car un médecin effectue 0 ou n consultation.
+i) Une consultation concerne un seul patient (1,1)
